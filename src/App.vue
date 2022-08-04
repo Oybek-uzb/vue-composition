@@ -21,19 +21,26 @@
       <button class="btn primary" type="submit" :disabled="!form.valid">Submit</button>
     </form>
 
-    <UsersList />
+    <Suspense v-if="submitted">
+      <UsersList />
+      <template #fallback>
+        <div class="loader"></div>
+      </template>
+    </Suspense>
   </div>
 </template>
 
 <script>
   import UsersList from "@/components/UsersList";
   import {useForm} from "@/use/form";
+  import {ref} from "vue";
 
   const required = val => !!val
   const minLength = num => val => val.length >= num
 
   export default {
     setup() {
+      const submitted = ref(false)
       const form = useForm({
         email: {
           value: '',
@@ -45,14 +52,11 @@
         }
       })
 
-      console.log(form)
-
       function submit() {
-        console.log('Email', form.email.value)
-        console.log('Password', form.password.value)
+        submitted.value = true
       }
 
-      return {form, submit}
+      return {form, submit, submitted}
     },
     components: {UsersList}
   }

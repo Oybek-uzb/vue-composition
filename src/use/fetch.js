@@ -1,6 +1,6 @@
 import {ref} from "vue";
 
-export async function useFetch(url, options) {
+export function useFetch(url, options) {
     const response = ref()
 
     const request = async () => {

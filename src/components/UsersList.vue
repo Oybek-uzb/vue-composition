@@ -1,17 +1,19 @@
-<!--https://jsonplaceholder.typicode.com/users-->
 <template>
   <div class="card">
     <ul class="list">
-      <li class="list-item">Item</li>
+      <li class="list-item" v-for="user in users" :key="user.id">{{ user }}</li>
     </ul>
 
   </div>
 </template>
 
 <script>
-export default {
-  setup() {
+import {useUsers} from "@/use/users";
 
+export default {
+  async setup() {
+    const {users} = await useUsers()
+    return {users}
   }
 }
 </script>
