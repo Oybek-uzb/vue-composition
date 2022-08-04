@@ -3,6 +3,8 @@
     <form class="card" @submit.prevent="submit">
       <h1>Auth</h1>
 
+      <h3 v-if="error">{{error}}</h3>
+
       <div class="form-control" :class="{invalid: form.email.touched && !form.email.valid}">
         <label for="email">Email</label>
         <input type="email" id="email" v-model="form.email.value" @blur="form.email.blur">
@@ -33,7 +35,7 @@
 <script>
   import UsersList from "@/components/UsersList";
   import {useForm} from "@/use/form";
-  import {ref} from "vue";
+  import {onErrorCaptured, ref} from "vue";
 
   const required = val => !!val
   const minLength = num => val => val.length >= num
@@ -41,6 +43,7 @@
   export default {
     setup() {
       const submitted = ref(false)
+      const error = ref()
       const form = useForm({
         email: {
           value: '',
@@ -56,7 +59,11 @@
         submitted.value = true
       }
 
-      return {form, submit, submitted}
+      onErrorCaptured(e => {
+        error.value = e.message
+      })
+
+      return {form, submit, submitted, error}
     },
     components: {UsersList}
   }
