@@ -20,10 +20,13 @@
 
       <button class="btn primary" type="submit" :disabled="!form.valid">Submit</button>
     </form>
+
+    <UsersList />
   </div>
 </template>
 
 <script>
+  import UsersList from "@/components/UsersList";
   import {useForm} from "@/use/form";
 
   const required = val => !!val
@@ -45,10 +48,12 @@
       console.log(form)
 
       function submit() {
-
+        console.log('Email', form.email.value)
+        console.log('Password', form.password.value)
       }
 
       return {form, submit}
-    }
+    },
+    components: {UsersList}
   }
 </script>
