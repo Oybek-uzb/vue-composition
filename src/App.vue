@@ -6,14 +6,19 @@
       <pre>{{ email }}</pre>
       <pre>{{ password }}</pre>
 
-      <div class="form-control">
+      <div class="form-control" :class="{invalid: !email.valid}">
         <label for="email">Email</label>
         <input type="email" id="email" v-model="email.value">
+        <small v-if="email.errors.required">Email is required</small>
       </div>
 
-      <div class="form-control">
+      <div class="form-control" :class="{invalid: !password.valid}">
         <label for="password">Password</label>
         <input type="password" id="password" v-model="password.value">
+        <small v-if="password.errors.required">Password is required</small>
+        <small v-else-if="password.errors.minLength">
+          Password length can not be less than 8. Now it is {{ password.value.length }}
+        </small>
       </div>
 
       <button class="btn primary" type="submit">Submit</button>
@@ -31,11 +36,11 @@
     setup() {
       const form = useForm({
         email: {
-          value: 'my@email.uz',
+          value: '',
           validators: {required}
         },
         password: {
-          value: 'myPassword',
+          value: '',
           validators: {required, minLength: minLength(8)}
         }
       })
