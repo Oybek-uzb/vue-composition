@@ -3,14 +3,17 @@
     <form class="card" @submit.prevent="submit">
       <h1>Auth</h1>
 
+      <pre>{{ email }}</pre>
+      <pre>{{ password }}</pre>
+
       <div class="form-control">
         <label for="email">Email</label>
-        <input type="email" id="email">
+        <input type="email" id="email" v-model="email.value">
       </div>
 
       <div class="form-control">
         <label for="password">Password</label>
-        <input type="password" id="password">
+        <input type="password" id="password" v-model="password.value">
       </div>
 
       <button class="btn primary" type="submit">Submit</button>
@@ -36,6 +39,8 @@
           validators: {required, minLength: minLength(8)}
         }
       })
+
+      console.log(form.password)
 
       function submit() {
 
