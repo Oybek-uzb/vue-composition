@@ -1,0 +1,27 @@
+{
+  "name": "vue-composition",
+  "version": "1.0.0",
+  "description": "Working with Composition API",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Oybek-uzb/vue-composition.git"
+  },
+  "keywords": [
+    "vue",
+    "composition-api",
+    "js"
+  ],
+  "author": "Oybek Makhsudov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Oybek-uzb/vue-composition/issues"
+  },
+  "homepage": "https://github.com/Oybek-uzb/vue-composition#readme",
+  "dependencies": {
+    "vue": "^3.2.37"
+  }
+}
